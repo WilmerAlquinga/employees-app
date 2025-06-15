@@ -19,11 +19,11 @@ public class DepartmentService {
     private final DepartmentRepository departmentRepository;
     private final DepartmentMapper departmentMapper;
 
-    public Department create(DepartmentDto departmentDto) {
+    public DepartmentDto create(DepartmentDto departmentDto) {
         Department department = departmentMapper.toEntity(departmentDto);
         department.setStatus(Status.A);
         log.info("Creating Department {}", department);
-        return departmentRepository.save(department);
+        return departmentMapper.toDto(departmentRepository.save(department));
     }
 
     public void delete(Long departmentId) {
@@ -38,7 +38,7 @@ public class DepartmentService {
                 .orElseThrow(() -> new EntityNotFoundException("No se encontró el departamento con ID: " + id));
     }
 
-    public List<Department> list() {
-        return departmentRepository.findAll();
+    public List<DepartmentDto> list() {
+        return departmentMapper.toDtos(departmentRepository.findAll());
     }
 }

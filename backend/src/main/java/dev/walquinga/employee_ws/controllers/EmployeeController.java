@@ -1,7 +1,6 @@
 package dev.walquinga.employee_ws.controllers;
 
 import dev.walquinga.employee_ws.dtos.EmployeeDto;
-import dev.walquinga.employee_ws.models.Employee;
 import dev.walquinga.employee_ws.services.EmployeeService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
@@ -21,7 +20,7 @@ public class EmployeeController {
     private final EmployeeService employeeService;
 
     @PostMapping("/create/{departmentId}")
-    public ResponseEntity<Employee> create(
+    public ResponseEntity<EmployeeDto> create(
             @PathVariable Long departmentId,
             @RequestBody EmployeeDto employeeDto
     ) {
@@ -35,7 +34,22 @@ public class EmployeeController {
     }
 
     @GetMapping
-    public ResponseEntity<List<Employee>> list() {
+    public ResponseEntity<List<EmployeeDto>> list() {
         return ResponseEntity.ok(employeeService.list());
+    }
+
+    @GetMapping("/highestSalary")
+    public ResponseEntity<EmployeeDto> highestSalary() {
+        return ResponseEntity.ok(employeeService.findEmployeeWithHighestSalary());
+    }
+
+    @GetMapping("/lowerAge")
+    public ResponseEntity<EmployeeDto> lowerAge() {
+        return ResponseEntity.ok(employeeService.findEmployeeWithLowerAge());
+    }
+
+    @GetMapping("/countLastMonth")
+    public ResponseEntity<Long> countLastMonth() {
+        return ResponseEntity.ok(employeeService.countEmployeesHiredLastMonth());
     }
 }
