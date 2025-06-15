@@ -11,6 +11,8 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDate;
+import java.util.Comparator;
 import java.util.List;
 
 @Slf4j
@@ -21,13 +23,13 @@ public class EmployeeService {
     private final DepartmentService departmentService;
     private final EmployeeMapper employeeMapper;
 
-    public Employee create(Long departmentId, EmployeeDto employeeDto) {
+    public EmployeeDto create(Long departmentId, EmployeeDto employeeDto) {
         Department department = departmentService.getById(departmentId);
         Employee employee = employeeMapper.toEntity(employeeDto);
         employee.setDepartment(department);
         employee.setStatus(Status.A);
 
-        return employeeRepository.save(employee);
+        return employeeMapper.toDto(employeeRepository.save(employee));
     }
 
     public void delete(Long employeeId) {
@@ -37,7 +39,26 @@ public class EmployeeService {
         employeeRepository.save(emp);
     }
 
-    public List<Employee> list() {
-        return employeeRepository.findAll();
+    public List<EmployeeDto> list() {
+        return employeeMapper.toDtos(employeeRepository.findAll());
+    }
+
+    public EmployeeDto findEmployeeWithHighestSalary() {
+        return employeeMapper.toDto(employeeRepository.findAll().stream()
+                .max(Comparator.comparing(Employee::getSalary))
+                .orElse(null));
+    }
+
+    public EmployeeDto findEmployeeWithLowerAge() {
+        return employeeMapper.toDto(employeeRepository.findAll().stream()
+                .min(Comparator.comparing(Employee::getAge))
+                .orElse(null));
+    }
+
+    public long countEmployeesHiredLastMonth() {
+        LocalDate date = LocalDate.now().minusMonths(1);
+        return employeeRepository.findAll().stream()
+                .filter(e -> e.getStartDate() != null && e.getStartDate().isAfter(date))
+                .count();
     }
 }
