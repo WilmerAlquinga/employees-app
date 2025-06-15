@@ -26,10 +26,10 @@ public class DepartmentService {
         return departmentRepository.save(department);
     }
 
-    public void delete(Long id) {
-        Department department = this.getById(id);
+    public void delete(Long departmentId) {
+        Department department = this.getById(departmentId);
         department.setStatus(Status.I);
-        log.info("Deleting Department with id: {}", id);
+        log.info("Deleting Department with departmentId: {}", departmentId);
         departmentRepository.save(department);
     }
 

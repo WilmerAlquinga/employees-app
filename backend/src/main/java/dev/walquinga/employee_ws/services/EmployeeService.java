@@ -30,9 +30,9 @@ public class EmployeeService {
         return employeeRepository.save(employee);
     }
 
-    public void delete(Long id) {
-        Employee emp = employeeRepository.findById(id)
-                .orElseThrow(() -> new EntityNotFoundException("No se encontró el empleado con ID: " + id));
+    public void delete(Long employeeId) {
+        Employee emp = employeeRepository.findById(employeeId)
+                .orElseThrow(() -> new EntityNotFoundException("No se encontró el empleado con ID: " + employeeId));
         emp.setStatus(Status.I);
         employeeRepository.save(emp);
     }

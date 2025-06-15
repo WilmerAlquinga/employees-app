@@ -5,7 +5,6 @@ import dev.walquinga.employee_ws.models.Employee;
 import dev.walquinga.employee_ws.services.EmployeeService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -16,12 +15,12 @@ import org.springframework.web.bind.annotation.RestController;
 import java.util.List;
 
 @RestController
-@RequestMapping("/employees")
+@RequestMapping("/employee")
 @RequiredArgsConstructor
 public class EmployeeController {
     private final EmployeeService employeeService;
 
-    @PostMapping("/{departmentId}")
+    @PostMapping("/create/{departmentId}")
     public ResponseEntity<Employee> create(
             @PathVariable Long departmentId,
             @RequestBody EmployeeDto employeeDto
@@ -29,9 +28,9 @@ public class EmployeeController {
         return ResponseEntity.ok(employeeService.create(departmentId, employeeDto));
     }
 
-    @DeleteMapping("/{id}")
-    public ResponseEntity<Void> delete(@PathVariable Long id) {
-        employeeService.delete(id);
+    @PostMapping("/delete/{employeeId}")
+    public ResponseEntity<Void> delete(@PathVariable Long employeeId) {
+        employeeService.delete(employeeId);
         return ResponseEntity.noContent().build();
     }
 
