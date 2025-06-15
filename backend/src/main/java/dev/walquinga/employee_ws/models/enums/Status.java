@@ -1,4 +1,4 @@
-package dev.walquinga.employee_ws.enums;
+package dev.walquinga.employee_ws.models.enums;
 
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;
