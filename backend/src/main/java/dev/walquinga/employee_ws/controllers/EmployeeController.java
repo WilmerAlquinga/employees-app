@@ -1,11 +1,9 @@
 package dev.walquinga.employee_ws.controllers;
 
 import dev.walquinga.employee_ws.dtos.EmployeeDto;
-import dev.walquinga.employee_ws.models.Employee;
 import dev.walquinga.employee_ws.services.EmployeeService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -16,27 +14,42 @@ import org.springframework.web.bind.annotation.RestController;
 import java.util.List;
 
 @RestController
-@RequestMapping("/employees")
+@RequestMapping("/employee")
 @RequiredArgsConstructor
 public class EmployeeController {
     private final EmployeeService employeeService;
 
-    @PostMapping("/{departmentId}")
-    public ResponseEntity<Employee> create(
+    @PostMapping("/create/{departmentId}")
+    public ResponseEntity<EmployeeDto> create(
             @PathVariable Long departmentId,
             @RequestBody EmployeeDto employeeDto
     ) {
         return ResponseEntity.ok(employeeService.create(departmentId, employeeDto));
     }
 
-    @DeleteMapping("/{id}")
-    public ResponseEntity<Void> delete(@PathVariable Long id) {
-        employeeService.delete(id);
+    @PostMapping("/delete/{employeeId}")
+    public ResponseEntity<Void> delete(@PathVariable Long employeeId) {
+        employeeService.delete(employeeId);
         return ResponseEntity.noContent().build();
     }
 
     @GetMapping
-    public ResponseEntity<List<Employee>> list() {
+    public ResponseEntity<List<EmployeeDto>> list() {
         return ResponseEntity.ok(employeeService.list());
+    }
+
+    @GetMapping("/highestSalary")
+    public ResponseEntity<EmployeeDto> highestSalary() {
+        return ResponseEntity.ok(employeeService.findEmployeeWithHighestSalary());
+    }
+
+    @GetMapping("/lowerAge")
+    public ResponseEntity<EmployeeDto> lowerAge() {
+        return ResponseEntity.ok(employeeService.findEmployeeWithLowerAge());
+    }
+
+    @GetMapping("/countLastMonth")
+    public ResponseEntity<Long> countLastMonth() {
+        return ResponseEntity.ok(employeeService.countEmployeesHiredLastMonth());
     }
 }
