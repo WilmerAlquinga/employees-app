@@ -1,0 +1,62 @@
+<div class="layout">
+  <div class="form-wrapper">
+    <h2>Agregar Empleado</h2>
+    <form [formGroup]="form" (ngSubmit)="onSubmit()">
+      <div class="form-grid">
+        <div class="form-group">
+          <label for="firstName">Nombres</label>
+          <input id="firstName" formControlName="firstName"/>
+        </div>
+        <div class="form-group">
+          <label for="lastName">Apellidos</label>
+          <input id="lastName" formControlName="lastName"/>
+        </div>
+        <div class="form-group">
+          <label for="departmentId">Departamento</label>
+          <select id="departmentId" formControlName="departmentId">
+            <option value="">Seleccione</option>
+            <option *ngFor="let dept of departments" [value]="dept.id">{{ dept.name }}</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label for="role">Rol</label>
+          <select id="role" formControlName="role">
+            <option value="">Seleccione</option>
+            <option value="Desarrollador">Desarrollador</option>
+            <option value="Analista">Analista</option>
+            <option value="Contador">Contador</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label for="age">Edad</label>
+          <input id="age" type="number" formControlName="age"/>
+        </div>
+        <div class="form-group">
+          <label for="salary">Salario</label>
+          <input id="salary" type="number" formControlName="salary"/>
+        </div>
+        <div class="form-group">
+          <label for="startDate">Fecha de Ingreso</label>
+          <input id="startDate" type="date" formControlName="startDate"/>
+        </div>
+        <div class="form-group">
+          <label for="endDate">Fecha de Salida</label>
+          <input id="endDate" type="date" formControlName="endDate"/>
+        </div>
+        <div class="form-group">
+          <label for="status">Estado</label>
+          <select id="status" formControlName="status">
+            <option value="A">Activo</option>
+            <option value="I">Inactivo</option>
+          </select>
+        </div>
+      </div>
+      <div class="form-actions">
+        <button type="submit" [disabled]="form.invalid">Agregar Empleado</button>
+      </div>
+    </form>
+  </div>
+  <div class="table-wrapper">
+    <app-employee-list/>
+  </div>
+</div>
