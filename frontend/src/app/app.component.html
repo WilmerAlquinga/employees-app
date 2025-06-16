@@ -1,7 +1,12 @@
-<main class="main">
-  <div class="content">
-    <h1>Aplicación de Gestión de Empleados</h1>
-  </div>
+<main class="main container">
+  <header class="app-header">
+    <h1 class="title-page">Gestión de Empleados</h1>
+    <nav>
+      <a routerLink="/crear-empleado">Agregar Empleado</a>
+      <a routerLink="/buscar-empleados">Buscar Empleados</a>
+    </nav>
+  </header>
+  <section class="content">
+    <router-outlet></router-outlet>
+  </section>
 </main>
-
-<router-outlet></router-outlet>

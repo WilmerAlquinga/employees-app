@@ -1,0 +1,75 @@
+.layout {
+  display: flex;
+  gap: 2rem;
+  align-items: flex-start;
+  padding: 0 0.5rem 0 0.5rem;
+}
+
+.form-wrapper {
+  flex: 1;
+  padding: 0.5rem;
+  border-radius: 12px;
+  background-color: #f5f6fa;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+}
+
+.form-wrapper h2 {
+  margin-top: 0.5rem;
+  margin-bottom: 1rem;
+  font-size: 1.25rem;
+  color: #333;
+}
+
+.form-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1rem;
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+}
+
+label {
+  margin-bottom: 0.25rem;
+  font-weight: 500;
+  color: #444;
+}
+
+input, select {
+  padding: 0.5rem;
+  font-size: 0.95rem;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+input:focus, select:focus {
+  outline: none;
+  border-color: #153963;
+}
+
+.form-actions {
+  margin-top: 1.5rem;
+  grid-column: span 2;
+}
+
+button {
+  padding: 0.75rem;
+  font-size: 1rem;
+  width: 100%;
+  background-color: #153963;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+button:disabled {
+  background-color: #c5cae9;
+  cursor: not-allowed;
+}
+
+.table-wrapper {
+  flex: 2;
+}

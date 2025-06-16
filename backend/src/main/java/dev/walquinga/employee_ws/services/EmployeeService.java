@@ -33,10 +33,11 @@ public class EmployeeService {
     }
 
     public void delete(Long employeeId) {
-        Employee emp = employeeRepository.findById(employeeId)
+        Employee employee = employeeRepository.findById(employeeId)
                 .orElseThrow(() -> new EntityNotFoundException("No se encontró el empleado con ID: " + employeeId));
-        emp.setStatus(Status.I);
-        employeeRepository.save(emp);
+        employee.setStatus(Status.I);
+        employee.setEndDate(LocalDate.now());
+        employeeRepository.save(employee);
     }
 
     public List<EmployeeDto> list() {
@@ -45,6 +46,7 @@ public class EmployeeService {
 
     public EmployeeDto findEmployeeWithHighestSalary() {
         return employeeMapper.toDto(employeeRepository.findAll().stream()
+                .filter(e -> e.getSalary() != null)
                 .max(Comparator.comparing(Employee::getSalary))
                 .orElse(null));
     }

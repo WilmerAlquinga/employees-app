@@ -1,4 +1,4 @@
 package dev.walquinga.employee_ws.dtos;
 
-public record DepartmentDto(String name) {
+public record DepartmentDto(Long id, String name) {
 }
