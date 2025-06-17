@@ -4,19 +4,45 @@
     <form [formGroup]="form" (ngSubmit)="onSubmit()">
       <div class="form-grid">
         <div class="form-group">
-          <label for="firstName">Nombres</label>
+          <label for="firstName">Nombres *</label>
           <input id="firstName" formControlName="firstName"/>
+          <ng-container *ngIf="form.get('firstName') as control">
+            <span class="validation-error" *ngIf="control.touched && control.hasError('required')">
+              Este campo es obligatorio.
+            </span>
+          </ng-container>
         </div>
         <div class="form-group">
-          <label for="lastName">Apellidos</label>
+          <label for="lastName">Apellidos *</label>
           <input id="lastName" formControlName="lastName"/>
+          <ng-container *ngIf="form.get('lastName') as control">
+            <span class="validation-error" *ngIf="control.touched && control.hasError('required')">
+              Este campo es obligatorio.
+            </span>
+          </ng-container>
         </div>
         <div class="form-group">
-          <label for="departmentId">Departamento</label>
+          <label for="age">Edad *</label>
+          <input id="age" type="number" min="18" formControlName="age" inputmode="numeric" pattern="\d*"
+                 (input)="onAgeInput($event)"/>
+          <ng-container *ngIf="form.get('age') as control">
+            <span class="validation-error" *ngIf="control.touched && control.errors">
+              <span *ngIf="control.errors['required']">Este campo es obligatorio.</span>
+              <span *ngIf="control.errors['min']">Debe ser mayor o igual a 18.</span>
+            </span>
+          </ng-container>
+        </div>
+        <div class="form-group">
+          <label for="departmentId">Departamento *</label>
           <select id="departmentId" formControlName="departmentId">
             <option value="">Seleccione</option>
             <option *ngFor="let dept of departments" [value]="dept.id">{{ dept.name }}</option>
           </select>
+          <ng-container *ngIf="form.get('departmentId') as control">
+            <span class="validation-error" *ngIf="control.touched && control.hasError('required')">
+              Este campo es obligatorio.
+            </span>
+          </ng-container>
         </div>
         <div class="form-group">
           <label for="role">Rol</label>
@@ -28,12 +54,13 @@
           </select>
         </div>
         <div class="form-group">
-          <label for="age">Edad</label>
-          <input id="age" type="number" formControlName="age"/>
-        </div>
-        <div class="form-group">
           <label for="salary">Salario</label>
-          <input id="salary" type="number" formControlName="salary"/>
+          <input id="salary" type="text" formControlName="salary" inputmode="decimal" (input)="onSalaryInput($event)"/>
+          <ng-container *ngIf="form.get('salary') as control">
+            <span class="validation-error" *ngIf="control.touched && control.invalid">
+              Ingrese un número válido (máx 2 decimales).
+            </span>
+          </ng-container>
         </div>
         <div class="form-group">
           <label for="startDate">Fecha de Ingreso</label>
