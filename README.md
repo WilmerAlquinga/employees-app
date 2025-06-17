@@ -1,29 +1,29 @@
 # App for Employees and Departments management
 
-# Features
+## Features
 
 - Create, Read, Delete employees
 - Create, Read, Delete departments
 - Assign employees to departments
 - Search employees by filters
 
-# Tools and Technologies
+## Tools and Technologies
 
-## Backend
+### Backend
 
 - Java 21
 - Spring Boot 3.5
 - H2 Database
 
-## Frontend
+### Frontend
 
-- NodeJS 23
-- Angular 21
+- NodeJS 22
+- Angular 19
 - TypeScript
 
-# How to run
+## How to run
 
-## Docker
+### Docker
 
 Run the following command to build and run the Docker containers:
 
@@ -38,9 +38,9 @@ Run the following command to build and run the Docker containers:
    - **Username**: `sa`
    - **Password**: (leave blank)
 
-## Local Development
+### Local Development
 
-### Backend
+#### Backend
 
 1. Navigate to the `backend` directory with the following command:
    ```bash
@@ -56,7 +56,7 @@ Run the following command to build and run the Docker containers:
    - **Username**: `sa`
    - **Password**: (leave blank)
 
-### Frontend
+#### Frontend
 
 1. Navigate to the `frontend` directory with the following command:
    ```bash
