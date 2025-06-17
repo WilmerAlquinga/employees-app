@@ -1,29 +1,33 @@
 # App for Employees and Departments management
 
-# Features
+## Features
+
 - Create, Read, Update, Delete employees
 - Create, Read, Update, Delete departments
 - Assign employees to departments
 - View employees by department
 - Search employees by filters
 
-# Tools and Technologies
+## Tools and Technologies
 
-## Backend
+### Backend
+
 - Java 21
 - Spring Boot 3.5
 - H2 Database
 
-## Frontend
+### Frontend
+
 - NodeJS 23
 - Angular 21
 - TypeScript
 
-# How to run
+## How to run
 
-## Docker
+### Docker
 
 Run the following command to build and run the Docker containers:
+
 ```bash
   docker-compose up --build
 ```
@@ -32,9 +36,9 @@ Run the following command to build and run the Docker containers:
 - The backend API will be available at `http://localhost:8080`.
 - You can access the API documentation at `http://localhost:8080/swagger-ui/index.html`.
 
-## Local Development
+### Local Development
 
-### Backend
+#### Backend
 
 1. Navigate to the `backend` directory with the following command:
    ```bash
@@ -47,7 +51,8 @@ Run the following command to build and run the Docker containers:
 3. The backend server will start on `http://localhost:8080`.
 4. You can access the API documentation at `http://localhost:8080/swagger-ui/index.html`.
 
-### Frontend
+#### Frontend
+
 1. Navigate to the `frontend` directory with the following command:
    ```bash
    cd frontend
