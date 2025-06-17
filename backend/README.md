@@ -33,6 +33,9 @@ This is a simple Spring Boot microservice to manage employees and his department
     docker run -p 8080:8080 employees-service
     ```
    
-4. Access the application at `http://localhost:8080`.
+4. Access the application at `http://localhost:8080/api/v1`.
 
-5. Access Swagger UI at `http://localhost:8080/swagger-ui/index.html`.
+5. Access the H2 console at `http://localhost:8080/api/v1/h2-console` with the following credentials:
+   - **JDBC URL**: `jdbc:h2:mem:employees_db;DB_CLOSE_DELAY=-1;DB_CLOSE_ON_EXIT=FALSE`
+   - **Username**: `sa`
+   - **Password**: (leave blank)

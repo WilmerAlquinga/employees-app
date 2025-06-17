@@ -1,6 +1,28 @@
-# EmployeeUi
+# App for Employees and Departments management
 
-This project was generated using [Angular CLI](https://github.com/angular/angular-cli) version 19.2.15.
+## Tools and Technologies
+- NodeJS 22
+- Angular 19
+- TypeScript
+- Angular CLI
+- Angular Material
+- RxJS
+
+## How to run
+
+### Docker
+1. Ensure you have Docker installed and running.
+2. Build the Docker image:
+   ```bash
+   docker build -t employees-ui .
+   ```
+
+3. Run the Docker container:
+   ```bash
+    docker run -p 8080:8080 employees-ui
+    ```
+
+4. Access the application at `http://localhost:4200`.
 
 ## Development server
 

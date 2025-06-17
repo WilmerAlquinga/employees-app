@@ -1,20 +1,22 @@
 # App for Employees and Departments management
 
 # Features
-- Create, Read, Update, Delete employees
-- Create, Read, Update, Delete departments
+
+- Create, Read, Delete employees
+- Create, Read, Delete departments
 - Assign employees to departments
-- View employees by department
 - Search employees by filters
 
 # Tools and Technologies
 
 ## Backend
+
 - Java 21
 - Spring Boot 3.5
 - H2 Database
 
 ## Frontend
+
 - NodeJS 23
 - Angular 21
 - TypeScript
@@ -24,13 +26,17 @@
 ## Docker
 
 Run the following command to build and run the Docker containers:
+
 ```bash
-  docker-compose up --build
+  docker-compose up -d --build
 ```
 
 - Open your web browser and navigate to `http://localhost:4200` to access the frontend application.
-- The backend API will be available at `http://localhost:8080`.
-- You can access the API documentation at `http://localhost:8080/swagger-ui/index.html`.
+- The backend API will be available at `http://localhost:8080/api/v1`.
+- You can access to the H2 console at `http://localhost:8080/api/v1/h2-console` with the following credentials:
+   - **JDBC URL**: `jdbc:h2:mem:employees_db;DB_CLOSE_DELAY=-1;DB_CLOSE_ON_EXIT=FALSE`
+   - **Username**: `sa`
+   - **Password**: (leave blank)
 
 ## Local Development
 
@@ -44,10 +50,14 @@ Run the following command to build and run the Docker containers:
    ```bash
    ./gradlew bootRun
    ```
-3. The backend server will start on `http://localhost:8080`.
-4. You can access the API documentation at `http://localhost:8080/swagger-ui/index.html`.
+3. The backend server will start on `http://localhost:8080/api/v1`.
+4. You can access the H2 console at `http://localhost:8080/api/v1/h2-console` with the following credentials:
+   - **JDBC URL**: `jdbc:h2:mem:employees_db;DB_CLOSE_DELAY=-1;DB_CLOSE_ON_EXIT=FALSE`
+   - **Username**: `sa`
+   - **Password**: (leave blank)
 
 ### Frontend
+
 1. Navigate to the `frontend` directory with the following command:
    ```bash
    cd frontend
