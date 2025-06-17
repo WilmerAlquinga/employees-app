@@ -35,6 +35,10 @@ public class EmployeeService {
     public void delete(Long employeeId) {
         Employee employee = employeeRepository.findById(employeeId)
                 .orElseThrow(() -> new EntityNotFoundException("No se encontró el empleado con ID: " + employeeId));
+        if (Status.I.equals(employee.getStatus())) {
+            log.warn("Employee with employeeId: {} is already inactive", employeeId);
+            return;
+        }
         employee.setStatus(Status.I);
         employee.setEndDate(LocalDate.now());
         employeeRepository.save(employee);

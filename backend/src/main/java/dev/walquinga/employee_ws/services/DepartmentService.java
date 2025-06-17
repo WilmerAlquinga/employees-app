@@ -28,6 +28,10 @@ public class DepartmentService {
 
     public void delete(Long departmentId) {
         Department department = this.getById(departmentId);
+        if (Status.I.equals(department.getStatus())) {
+            log.warn("Department with departmentId: {} is already inactive", departmentId);
+            return;
+        }
         department.setStatus(Status.I);
         log.info("Deleting Department with departmentId: {}", departmentId);
         departmentRepository.save(department);
