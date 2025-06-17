@@ -40,7 +40,7 @@ public class EmployeeService {
         employeeRepository.save(employee);
     }
 
-    public List<EmployeeDto> list() {
+    public List<EmployeeDto> getAll() {
         return employeeMapper.toDtos(employeeRepository.findAll());
     }
 

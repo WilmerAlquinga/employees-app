@@ -36,7 +36,7 @@ public class EmployeeController {
 
     @GetMapping
     public ResponseEntity<List<EmployeeDto>> list() {
-        return ResponseEntity.ok(employeeService.list());
+        return ResponseEntity.ok(employeeService.getAll());
     }
 
     @GetMapping("/highestSalary")

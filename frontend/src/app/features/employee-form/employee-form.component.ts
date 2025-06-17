@@ -33,9 +33,9 @@ export class EmployeeFormComponent implements OnInit {
       firstName: ['', Validators.required],
       lastName: ['', Validators.required],
       age: ['', [Validators.required, Validators.min(18)]],
-      role: ['Desarrollador', Validators.required],
-      salary: ['', [Validators.pattern(/^\d+$/)]],
-      startDate: ['', Validators.required],
+      role: [''],
+      salary: ['', [Validators.pattern(/^\d+(\.\d{0,2})?/)]],
+      startDate: [''],
       endDate: [''],
       status: ['A', Validators.required],
       departmentId: ['', Validators.required],
@@ -45,7 +45,7 @@ export class EmployeeFormComponent implements OnInit {
   ngOnInit(): void {
     this.employeeService.getAll();
     this.departmentService.departments$.subscribe(data => this.departments = data);
-    this.departmentService.getAll();
+    this.departmentService.getAllActive();
   }
 
   onSubmit(): void {
@@ -66,5 +66,24 @@ export class EmployeeFormComponent implements OnInit {
         },
       });
     }
+  }
+
+  onAgeInput(event: Event): void {
+    const input = event.target as HTMLInputElement;
+    const value = parseInt(input.value, 10);
+    if (!isNaN(value)) {
+      this.form.get('age')?.setValue(value);
+    }
+  }
+
+  onSalaryInput(event: Event): void {
+    const input = event.target as HTMLInputElement;
+    const raw = input.value;
+    const cleaned = raw.replace(/[^\d.]/g, '').replace(/(\.)(?=.*\.)/g, '');
+    const match = cleaned.match(/^\d+(\.\d{0,2})?/);
+    const valid = match ? match[0] : '';
+    input.value = valid;
+    this.form.get('salary')?.setValue(valid);
+    this.form.get('salary')?.updateValueAndValidity();
   }
 }

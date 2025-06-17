@@ -38,7 +38,11 @@ public class DepartmentService {
                 .orElseThrow(() -> new EntityNotFoundException("No se encontró el departamento con ID: " + id));
     }
 
-    public List<DepartmentDto> list() {
+    public List<DepartmentDto> getAll() {
         return departmentMapper.toDtos(departmentRepository.findAll());
+    }
+
+    public List<DepartmentDto> getAllActive() {
+        return departmentMapper.toDtos(departmentRepository.findByStatus(Status.A));
     }
 }

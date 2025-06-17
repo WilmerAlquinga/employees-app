@@ -31,7 +31,12 @@ public class DepartmentController {
     }
 
     @GetMapping
-    public ResponseEntity<List<DepartmentDto>> list() {
-        return ResponseEntity.ok(departmentService.list());
+    public ResponseEntity<List<DepartmentDto>> getAll() {
+        return ResponseEntity.ok(departmentService.getAll());
+    }
+
+    @GetMapping("active")
+    public ResponseEntity<List<DepartmentDto>> getAllActive() {
+        return ResponseEntity.ok(departmentService.getAllActive());
     }
 }

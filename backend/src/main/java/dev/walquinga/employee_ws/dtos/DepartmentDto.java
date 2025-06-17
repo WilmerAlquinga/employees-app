@@ -1,4 +1,6 @@
 package dev.walquinga.employee_ws.dtos;
 
-public record DepartmentDto(Long id, String name) {
+import dev.walquinga.employee_ws.models.enums.Status;
+
+public record DepartmentDto(Long id, String name, Status status) {
 }
