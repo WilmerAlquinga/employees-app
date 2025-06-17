@@ -1,0 +1,63 @@
+<div class="layout">
+  <div class="form-wrapper">
+    <h2>Agregar Departamento</h2>
+    <form [formGroup]="form" (ngSubmit)="onSubmit()">
+      <div class="form-grid">
+        <div class="form-group">
+          <label for="name">Nombre *</label>
+          <input id="name" formControlName="name"/>
+          <ng-container *ngIf="form.get('name') as control">
+            <span class="validation-error" *ngIf="control.touched && control.hasError('required')">
+              Este campo es obligatorio.
+            </span>
+          </ng-container>
+        </div>
+        <div class="form-group">
+          <label for="status">Estado</label>
+          <select id="status" formControlName="status">
+            <option value="A">Activo</option>
+            <option value="I">Inactivo</option>
+          </select>
+        </div>
+      </div>
+      <div class="form-actions">
+        <button type="submit" class="button-form" [disabled]="form.invalid">Agregar Departamento</button>
+      </div>
+    </form>
+  </div>
+  <div class="table-wrapper">
+    <h2>Listado de Departamentos</h2>
+    <table mat-table [dataSource]="(departments$ | async) ?? []" class="mat-elevation-z8">
+      <ng-container matColumnDef="id">
+        <th mat-header-cell *matHeaderCellDef>ID</th>
+        <td mat-cell *matCellDef="let e">{{ e.id }}</td>
+      </ng-container>
+
+      <ng-container matColumnDef="name">
+        <th mat-header-cell *matHeaderCellDef>Nombre del departamento</th>
+        <td mat-cell *matCellDef="let e">{{ e.name }}</td>
+      </ng-container>
+
+      <ng-container matColumnDef="status">
+        <th mat-header-cell *matHeaderCellDef>Estado</th>
+        <td mat-cell *matCellDef="let e">
+          <span [ngClass]="e.status === 'A' ? 'active' : 'inactive'">
+            {{ e.status === 'A' ? 'Activo' : 'Inactivo' }}
+          </span>
+        </td>
+      </ng-container>
+
+      <ng-container matColumnDef="actions">
+        <th mat-header-cell *matHeaderCellDef>Acciones</th>
+        <td mat-cell *matCellDef="let e">
+          <button mat-icon-button color="warn" (click)="openDeleteDialog(e.id)" aria-label="Eliminar">
+            <mat-icon>delete</mat-icon>
+          </button>
+        </td>
+      </ng-container>
+
+      <tr mat-header-row *matHeaderRowDef="columns"></tr>
+      <tr mat-row *matRowDef="let row; columns: columns"></tr>
+    </table>
+  </div>
+</div>

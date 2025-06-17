@@ -1,0 +1,28 @@
+services:
+  backend:
+    build:
+      context: ./backend
+      dockerfile: Dockerfile
+    container_name: backend
+    networks:
+      - employees-network
+    ports:
+      - "8080:8080"
+  frontend:
+    build:
+      context: ./frontend
+      dockerfile: Dockerfile
+    container_name: frontend
+    networks:
+      - employees-network
+    ports:
+      - "4200:80"
+    depends_on:
+      - backend
+
+networks:
+  employees-network:
+    driver: bridge
+    ipam:
+      config:
+        - subnet: 10.10.45.0/24
