@@ -18,8 +18,8 @@
 
 ### Frontend
 
-- NodeJS 23
-- Angular 21
+- NodeJS 22
+- Angular 19
 - TypeScript
 
 ## How to run
