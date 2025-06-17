@@ -45,7 +45,7 @@ export class EmployeeFormComponent implements OnInit {
   ngOnInit(): void {
     this.employeeService.getAll();
     this.departmentService.departments$.subscribe(data => this.departments = data);
-    this.departmentService.getAll();
+    this.departmentService.getAllActive();
   }
 
   onSubmit(): void {

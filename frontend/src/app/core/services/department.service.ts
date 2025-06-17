@@ -16,6 +16,10 @@ export class DepartmentService {
     this.http.get<Department[]>(`${this.API_URL}/department`).subscribe(response => this.departments.next(response));
   }
 
+  getAllActive(): void {
+    this.http.get<Department[]>(`${this.API_URL}/department/active`).subscribe(response => this.departments.next(response));
+  }
+
   create(name: string): Observable<Department> {
     return this.http.post<Department>(`${this.API_URL}/department/create`, {name});
   }
