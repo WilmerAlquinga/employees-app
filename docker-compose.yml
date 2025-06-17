@@ -5,10 +5,20 @@ services:
       dockerfile: Dockerfile
     container_name: backend
     networks:
-      employees-network:
-        ipv4_address: 10.10.45.10
+      - employees-network
     ports:
       - "8080:8080"
+  frontend:
+    build:
+      context: ./frontend
+      dockerfile: Dockerfile
+    container_name: frontend
+    networks:
+      - employees-network
+    ports:
+      - "4200:80"
+    depends_on:
+      - backend
 
 networks:
   employees-network:
